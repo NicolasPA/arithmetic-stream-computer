@@ -10,9 +10,10 @@ Thoughts process:
    stream that comes before.
     1. The first culprits for having to keep some storage of previous results are multiplications/divisions because
        they can change the last term of an addition/subtraction and therefore force us to keep the `previous_term` and
-       the `previous_operator` for the new computation. Ex: (2 + 3)*5 != 2 + 3*5
-    2. As the characters are entered one by one, we need to concatenate the digits of a multi-digit number
-       as `digit_concatenation`.
+       the `previous_operator` for the new computation. Ex: If the stream is `2 + 3 * 5`, we need to recompute the 
+       addition after the multiplication by 5.
+    2. As the characters are entered one by one, we need to concatenate the digits of a multi-digit number,
+       we do that in `digit_concatenation`.
     3. An operation may take multiple inputs to be possible to compute, and a new input may require a re-computation of
        the `previous_term` of an addition/subtraction, so we need to store everything else (not already mentioned)
        necessary to recompute: current active `operator`, current active `term`, `previous_result`,
@@ -22,7 +23,7 @@ Thoughts process:
        from the most nested first.
         1. The support for parenthesis is not complete. While the use case from the exercise is covered, and multiple
            others, some specific use cases such as evaluating to a negative value or nested parenthesis are not.
-        2. The specific case of having no parentheses can be understood as having only on pair of external parentheses,
+        2. The specific case of having no parentheses can be understood as having only one pair of external parentheses,
            so it's eventually just a specific use case for computing inside parentheses.
         3. Parenthesis lead us to have two additional variables to store the number of opened parentheses which must
            be closed to complete the computation in `opened_parentheses_counter` and a concatenation of the characters
