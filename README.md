@@ -1,6 +1,35 @@
 # Arithmetic Stream Computer
 
-Thoughts process:
+## Problem
+
+The object should accept a potentially infinite stream of digits, arithmetic operations (+,
+-, /, *) and a print message. This stream should represent an arithmetic expression, the
+precedence of operations is important. Whitespaces should be ignored. The print
+message (let it be “?” character for simplicity) should make the object return the
+intermediate result and it should not affect results of calculation. Any incorrect input
+(such as unexpected characters, combinations like “++” or “-*”) should return an error
+message and the processing should be stopped.
+For example the input
+1 1 * 2 ? 1 + 3 ? * 7 ? + + 8 7 9 ?
+Should produce the output
+22
+234
+252
+ERROR
+[program terminated]
+Explanation
+The first print should return the result of calculation 11 * 2 = 22
+Then the program received characters 1 + 3, so the result should be 11 * 21 + 3 = 231
++ 3 = 234
+The next characters are * 7, the result should be 11 * 21 + 3 * 7 = 231 + 21 = 252
+And the last processed characters should be + +, they could not be interpreted and an
+error should appear, characters 8 7 9 ? should not be processed.
+Please design the application reusable and testable. Reduce space and time
+complexity as much as possible.
+Advanced task: please add brackets (“(“ and “)”) to the processable input: “3 * ( 2 +
+5 ) ?” should produce the result “21”.
+
+## Thoughts process:
 
 1. Because the exercice asked to reduce space and time complexity as much as possible, we decided to not use the trivial
    solution of storing the stream indefinitely and running the `eval()` function on it. Indeed, this would require
