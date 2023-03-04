@@ -9,6 +9,7 @@ message (let it be “?” character for simplicity) should make the object retu
 intermediate result and it should not affect results of calculation. Any incorrect input
 (such as unexpected characters, combinations like “++” or “-*”) should return an error
 message and the processing should be stopped.
+
 For example the input
 1 1 * 2 ? 1 + 3 ? * 7 ? + + 8 7 9 ?
 Should produce the output
@@ -17,6 +18,7 @@ Should produce the output
 252
 ERROR
 [program terminated]
+
 Explanation
 The first print should return the result of calculation 11 * 2 = 22
 Then the program received characters 1 + 3, so the result should be 11 * 21 + 3 = 231
@@ -24,8 +26,10 @@ Then the program received characters 1 + 3, so the result should be 11 * 21 + 3 
 The next characters are * 7, the result should be 11 * 21 + 3 * 7 = 231 + 21 = 252
 And the last processed characters should be + +, they could not be interpreted and an
 error should appear, characters 8 7 9 ? should not be processed.
+
 Please design the application reusable and testable. Reduce space and time
 complexity as much as possible.
+
 Advanced task: please add brackets (“(“ and “)”) to the processable input: “3 * ( 2 +
 5 ) ?” should produce the result “21”.
 
